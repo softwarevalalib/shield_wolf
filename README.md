@@ -98,8 +98,9 @@ Short version:
    npm run qa:smoke -- --base=https://YOUR_DEPLOYMENT.vercel.app
    ```
 
-**Note:** Neon hosts Postgres only. The Node API runs as Vercel serverless functions in the
-same project as the frontend — you do not deploy a separate backend host to Neon.
+**Note:** Neon hosts Postgres only. The Node API runs as **one** Vercel serverless
+function (`api/[[...path]].js`) that routes to handlers under `/handlers` — required for
+the Hobby plan’s 12-function limit. You do not deploy a separate backend host to Neon.
 
 Local pre-deploy gate:
 

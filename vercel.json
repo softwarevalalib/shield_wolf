@@ -3,7 +3,7 @@
   "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "installCommand": "npm install --include=dev",
+  "installCommand": "npm install --include=dev --omit=optional",
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }
@@ -27,8 +27,9 @@
     }
   ],
   "functions": {
-    "api/**/*.js": {
-      "maxDuration": 30
+    "api/[[...path]].js": {
+      "maxDuration": 30,
+      "includeFiles": "{handlers,server,database}/**"
     }
   }
 }
