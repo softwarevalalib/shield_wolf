@@ -236,6 +236,7 @@ Never run `npm run db:reset` against Neon — it refuses Postgres by design.
 | 404 on client routes | Ensure `vercel.json` rewrites are present (already in repo) |
 | Hobby fails after “Build Completed” / “Deploying outputs” | Free Hobby allows **max 12 serverless functions**. This app uses one catch-all (`api/[[...path]].js`). Redeploy latest `main`. |
 | `vite: command not found` on Vercel | Use latest `main` (`installCommand` includes `--include=dev`) |
+| `Cannot find module @rollup/rollup-linux-x64-gnu` | Do not use `--omit=optional` on install — Rollup’s Linux binary is an optional dependency |
 
 ---
 
