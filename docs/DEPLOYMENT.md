@@ -15,7 +15,7 @@ Neon does **not** host the Node API. The API ships with the frontend repo via Ve
 - GitHub repo: `softwarevalalib/shield_wolf` (or your fork)
 - [Vercel](https://vercel.com) account linked to that GitHub repo
 - [Neon](https://console.neon.tech) account
-- Node.js 20+ locally (for migrate/seed against Neon)
+- Node.js 24+ locally (for migrate/seed against Neon)
 - A strong random `JWT_SECRET` (32+ characters)
 
 ---
