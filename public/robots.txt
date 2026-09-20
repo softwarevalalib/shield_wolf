@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap will be generated when public catalog is live.
+# Sitemap: https://example.com/sitemap.xml

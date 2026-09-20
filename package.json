@@ -1,0 +1,64 @@
+{
+  "name": "shield-wolf",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Shield Wolf E-Commerce & Delivery Management Platform",
+  "scripts": {
+    "dev": "vite",
+    "dev:api": "node scripts/dev-api.js",
+    "dev:all": "node scripts/dev-all.js",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "db:migrate": "node database/migrate.js",
+    "db:migrate:status": "node database/migrate.js --status",
+    "db:seed": "node database/seed.js",
+    "db:seed:demo": "node database/seed-demo.js",
+    "db:reset": "node database/reset.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "env:check": "node scripts/check-production-env.js",
+    "qa:smoke": "node scripts/smoke-production.js",
+    "qa": "node scripts/qa.js"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.66.9",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^18.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.13.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.2.0",
+    "zod": "^3.24.2",
+    "zustand": "^5.0.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "@tailwindcss/vite": "^4.0.9",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.21.0",
+    "eslint-config-prettier": "^10.0.2",
+    "eslint-plugin-prettier": "^5.2.3",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^15.15.0",
+    "prettier": "^3.5.2",
+    "tailwindcss": "^4.0.9",
+    "vite": "^6.2.0",
+    "vitest": "^3.2.7"
+  },
+  "optionalDependencies": {
+    "better-sqlite3": "^11.10.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
