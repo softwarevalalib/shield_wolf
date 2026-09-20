@@ -99,7 +99,7 @@ Short version:
    ```
 
 **Note:** Neon hosts Postgres only. The Node API runs as **one** Vercel serverless
-function (`api/[[...path]].js`) that routes to handlers under `/handlers` — required for
+function (`api/index.js` + `/api/*` rewrite) that routes to handlers under `/handlers` — required for
 the Hobby plan’s 12-function limit. You do not deploy a separate backend host to Neon.
 
 Local pre-deploy gate:

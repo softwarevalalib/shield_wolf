@@ -210,7 +210,7 @@ Never run `npm run db:reset` against Neon — it refuses Postgres by design.
 | Piece | Where it runs |
 | ----- | ------------- |
 | React UI (`/src`, built to `dist`) | Vercel CDN / static |
-| API (`api/[[...path]].js` → `/handlers`) | One Vercel Serverless Function |
+| API (`api/index.js` + rewrite → `/handlers`) | One Vercel Serverless Function |
 | Database | Neon PostgreSQL |
 | Local SQLite | Dev only (`DB_DRIVER=sqlite`) — not production |
 
@@ -220,7 +220,7 @@ Never run `npm run db:reset` against Neon — it refuses Postgres by design.
 - `/api` function routing
 - Security headers
 - Function `maxDuration: 30`
-- Single catch-all API function for Hobby plan limits
+- Single API function + rewrite for Hobby plan limits
 
 ---
 
@@ -234,7 +234,8 @@ Never run `npm run db:reset` against Neon — it refuses Postgres by design.
 | Login works locally, fails on Vercel | Weak/`change-me` `JWT_SECRET`, or Preview vs Production env mismatch |
 | `VITE_*` ignored | Changed after build — redeploy |
 | 404 on client routes | Ensure `vercel.json` rewrites are present (already in repo) |
-| Hobby fails after “Build Completed” / “Deploying outputs” | Free Hobby allows **max 12 serverless functions**. This app uses one catch-all (`api/[[...path]].js`). Redeploy latest `main`. |
+| Hobby fails after “Build Completed” / “Deploying outputs” | Free Hobby allows **max 12 serverless functions**. This app uses one function (`api/index.js`) plus `/api/*` rewrites. Redeploy latest `main`. |
+| `/api/*` returns 404 (HTML or empty) | Non-Next.js Vercel has no `[[...path]]` catch-alls — use `api/index.js` + rewrite to `/api?__path=…` (already on latest `main`) |
 | `vite: command not found` on Vercel | Use latest `main` (`installCommand` includes `--include=dev`) |
 | `Cannot find module @rollup/rollup-linux-x64-gnu` | Do not use `--omit=optional` on install — Rollup’s Linux binary is an optional dependency |
 

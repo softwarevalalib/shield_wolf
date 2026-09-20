@@ -5,7 +5,7 @@
   "outputDirectory": "dist",
   "installCommand": "npm install --include=dev",
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/api/(.*)", "destination": "/api?__path=$1" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ],
   "headers": [
@@ -27,7 +27,7 @@
     }
   ],
   "functions": {
-    "api/[[...path]].js": {
+    "api/index.js": {
       "maxDuration": 30,
       "includeFiles": "{handlers,server,database}/**"
     }

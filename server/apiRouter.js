@@ -3,7 +3,19 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-export const handlersRoot = path.resolve(__dirname, '../handlers');
+
+function resolveHandlersRoot() {
+  const candidates = [
+    path.resolve(__dirname, '../handlers'),
+    path.resolve(process.cwd(), 'handlers'),
+  ];
+  for (const candidate of candidates) {
+    if (fs.existsSync(candidate)) return candidate;
+  }
+  return candidates[0];
+}
+
+export const handlersRoot = resolveHandlersRoot();
 
 const handlerCache = new Map();
 
