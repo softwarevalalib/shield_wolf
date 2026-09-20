@@ -78,21 +78,28 @@ The Vite `dev` server proxies `/api` to port 3000.
 
 ## Deploy to Vercel
 
-1. Import the Git repository in Vercel (framework: Vite; build: `npm run build`;
-   output: `dist`). `vercel.json` already configures SPA rewrites, security
-   headers, and serverless function limits for `/api`.
-2. Set production environment variables from `.env.example` (Vercel checklist
-   section). Generate a strong `JWT_SECRET`. Point `APP_URL` / `CORS_ORIGIN` /
-   `VITE_APP_URL` at the deployment URL (or custom domain).
-3. Deploy. Confirm `GET /api/health` returns `status: ok`, `database.connected: true`,
+Full step-by-step guide (Neon + Vercel + env + smoke checks):
+
+→ **[docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md)**
+
+Short version:
+
+1. Create a Neon project and copy the **pooled** `DATABASE_URL` (`sslmode=require`).
+2. Migrate/seed Neon from your machine (`DB_DRIVER=postgres DATABASE_URL=... npm run db:migrate`).
+3. Import this Git repo in Vercel (framework: Vite; build: `npm run build`; output: `dist`).
+   `vercel.json` already configures SPA rewrites, security headers, and `/api` functions.
+4. Set production environment variables from `.env.example` / the deployment guide.
+   Generate a strong `JWT_SECRET`. Point `APP_URL` / `CORS_ORIGIN` / `VITE_APP_URL` at the
+   deployment URL (or custom domain). Set `VITE_API_URL=/api`.
+5. Deploy. Confirm `GET /api/health` returns `status: ok`, `database.connected: true`,
    and `phase: 31`.
-4. Run smoke checks:
+6. Run smoke checks:
    ```bash
    npm run qa:smoke -- --base=https://YOUR_DEPLOYMENT.vercel.app
    ```
-5. Walk the Phase 31 acceptance checklist printed by the smoke script (auth,
-   catalog, cart/checkout, payments, delivery, invoices/receipts, finance,
-   mobile/a11y, no secrets/mocks).
+
+**Note:** Neon hosts Postgres only. The Node API runs as Vercel serverless functions in the
+same project as the frontend — you do not deploy a separate backend host to Neon.
 
 Local pre-deploy gate:
 
